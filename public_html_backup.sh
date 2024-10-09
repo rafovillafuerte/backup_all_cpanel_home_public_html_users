@@ -39,12 +39,13 @@ function delete_old_backups()
 }
 
 function backup_files(){
-  cd /home
-  for udir in *; do
+  #cd /home
+  #for udir in *; do
+  for uploads in /home/*/public_html; do
      backup_file="$BACKUP_DIR/$TIMESTAMP_$udir.tar.gz"  
-     find /home/$udir -type d -name 'public_html' -exec tar -czf $backup_file {} \;
-  done
-  
+     #find /home/$udir -type d -name 'public_html' -exec tar -czf $backup_file {} \;
+     tar -czf $backup_file "$uploads"
+  done 
 }
 
 function hr(){
