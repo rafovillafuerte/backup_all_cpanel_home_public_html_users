@@ -41,7 +41,7 @@ function delete_old_backups()
 function backup_files(){
   cd /home
   for udir in *; do
-     backup_file="$BACKUP_DIR/$TIMESTAMP_$udir.sql.gz"  
+     backup_file="$BACKUP_DIR/$TIMESTAMP_$udir.tar.gz"  
      find /home/$udir -type d -name 'public_html' -exec sh -c 'tar -czf $backup_file' {} \;
   done
   
