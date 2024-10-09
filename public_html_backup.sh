@@ -41,10 +41,14 @@ function delete_old_backups()
 function backup_files(){
   #cd /home
   #for udir in *; do
-  for uploads in /home/*/public_html; do
-     backup_file="$BACKUP_DIR/$TIMESTAMP_$udir.tar.gz"  
+  for udir in /home/*/public_html; do
+     IFS=/ read -r _ _ user _ <<<"$udir"
+     backup_file="$BACKUP_DIR/$TIMESTAMP_${user}.tar.gz"  
      #find /home/$udir -type d -name 'public_html' -exec tar -czf $backup_file {} \;
-     tar -czf $backup_file "$uploads"
+     cd /home/${user}
+     #tar -czf $backup_file "public_html"
+     echo "...respaldando directorio public_html del usuario ${user}" 
+     tar cf - public_html -P | pv -s $(du -sb public_html | awk '{print $1}') | gzip > $backup_file
   done 
 }
 
