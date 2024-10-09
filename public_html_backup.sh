@@ -43,7 +43,7 @@ function backup_files(){
   #for udir in *; do
   for udir in /home/*/public_html; do
      IFS=/ read -r _ _ user _ <<<"$udir"
-     backup_file="$BACKUP_DIR/$TIMESTAMP_${user}.tar.gz"  
+     backup_file="$BACKUP_DIR/$TIMESTAMP.${user}.tar.gz"  
      #find /home/$udir -type d -name 'public_html' -exec tar -czf $backup_file {} \;
      cd /home/${user}
      #tar -czf $backup_file "public_html"
