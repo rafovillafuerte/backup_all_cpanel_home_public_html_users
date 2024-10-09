@@ -10,7 +10,7 @@
 #CRON:
   # Ej. para cron job, copias diarias a las  @ 9:15 am
   # min  hr mday month wday command
-  # 15   9  *    *     *    /[path]/scripts/mysql_backup.sh
+  # 15   9  *    *     *    /[path]/scripts/public_html_backup.sh
 
 #RESTAURAR la copia de seguridad de la carpeta public_html
 # tar -xvf archivo.tar.gz
