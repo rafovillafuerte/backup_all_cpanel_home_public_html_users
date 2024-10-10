@@ -49,7 +49,7 @@ function backup_files(){
      #tar -czf $backup_file "public_html"
      echo "...respaldando directorio public_html del usuario ${user}" 
      #tar cf - public_html -P | pv -s $(du -sb public_html | awk '{print $1}') | gzip > $backup_file
-     tar -czf $backup_file public_html | pvl
+     tar zcvf $backup_file public_html | pvl
      echo "OK => $backup_file"
   done 
 }
