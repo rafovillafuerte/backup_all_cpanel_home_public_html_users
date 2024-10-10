@@ -48,7 +48,8 @@ function backup_files(){
      cd /home/${user}
      #tar -czf $backup_file "public_html"
      echo "...respaldando directorio public_html del usuario ${user}" 
-     tar cf - public_html -P | pv -s $(du -sb public_html | awk '{print $1}') | gzip > $backup_file
+     #tar cf - public_html -P | pv -s $(du -sb public_html | awk '{print $1}') | gzip > $backup_file
+     tar -czf $backup_file public_html | pvl
      echo "OK => $backup_file"
   done 
 }
@@ -57,6 +58,8 @@ function hr(){
   printf '=%.0s' {1..100}
   printf "\n"
 }
+
+function pvl { declare -i n=0; while read L ; do printf "\r%d" $((++n)) ; done ; echo ; }
 
 #==============================================================================
 # EJECUTAR SCRIPT BASH
