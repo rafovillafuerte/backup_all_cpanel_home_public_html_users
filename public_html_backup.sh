@@ -20,7 +20,7 @@
 #==============================================================================
 
 # DIRECTORIO DONDE SE ALMACENARAN LOS BACKUP
-BACKUP_DIR=/home/perudalia/public_html/backups_files
+BACKUP_DIR=/home/user/public_html/backups_files
 
 # Número de días para mantener las copias de seguridad
 KEEP_BACKUPS_FOR=30 #dias
@@ -43,13 +43,19 @@ function backup_files(){
   #for udir in *; do
   for udir in /home/*/public_html; do
      IFS=/ read -r _ _ user _ <<<"$udir"
+     if [ "${user}" = user -o "${user}" = aura.txt ]
+     then 
+       continue 
+     fi 
+     
      backup_file="$BACKUP_DIR/$TIMESTAMP.${user}.tar.gz"  
      #find /home/$udir -type d -name 'public_html' -exec tar -czf $backup_file {} \;
      cd /home/${user}
      #tar -czf $backup_file "public_html"
      echo "...respaldando directorio public_html del usuario ${user}" 
      #tar cf - public_html -P | pv -s $(du -sb public_html | awk '{print $1}') | gzip > $backup_file
-     tar zcvf $backup_file public_html | pvl
+     #tar zcvf $backup_file public_html | pvl
+     tar -czf $backup_file public_html     
      echo "OK => $backup_file"
   done 
 }
