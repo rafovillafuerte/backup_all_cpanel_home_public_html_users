@@ -43,7 +43,7 @@ function backup_files(){
   #for udir in *; do
   for udir in /home/*/public_html; do
      IFS=/ read -r _ _ user _ <<<"$udir"
-     if [ "${user}" = user -o "${user}" = aura.txt ]
+     if [ "${user}" = user -o "${user}" = user2 ] #Excluir estos usuarios
      then 
        continue 
      fi 
