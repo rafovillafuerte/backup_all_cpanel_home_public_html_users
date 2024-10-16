@@ -45,9 +45,9 @@ function backup_files(){
      IFS=/ read -r _ _ user _ <<<"$udir"
      if [ "${user}" = user -o "${user}" = user2 -o "${user}" = cPanelInstall -o "${user}" = latest -o "${user}" = virtfs ] #Excluir estos usuarios
      then 
+       echo "Excluido: ${user}"
        continue 
      fi
-     
      backup_file="$BACKUP_DIR/$TIMESTAMP.${user}.tar.gz"  
      #find /home/$udir -type d -name 'public_html' -exec tar -czf $backup_file {} \;
      cd /home/${user}
